@@ -1,35 +1,54 @@
-<!DOCTYPE html><html>
-<head><meta charset="UTF-8"><title>GitSnake</title>
-<style>#canvas { border: 2px solid black; display: block; margin: 0 auto; }</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GitSnake</title>
+    <style>
+        #canvas {
+            border: 2px solid black;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <canvas width="600" height="300" id="canvas">Váš prohlížeč není podporován</canvas>
-    <script>window.GitSnake = {};</script><script src="js/Point2D.js"></script>
-    <script src="js/SquareObject.js"></script><script src="js/Snake.js"></script>
-    <script src="js/Game.js"></script>
-    <script src="js/Food.js"></script><script src="js/Text.js"></script>
-    <script>
-        (function () {
-            var game = new GitSnake.Game(document.getElementById("canvas"), 20, 30);
-            game.setPauseText("Pro zahájení hry stiskněte mezerník nebo Esc");
-            var s = game.snake;
+<canvas width="600" height="300" id="canvas">Váš prohlížeč není podporován</canvas>
 
-            window.addEventListener("keydown", function (e) {
-                switch (e.keyCode) {
-                    case 38: return game.isPlaying && s.turn( 0, -1);
-                    case 40: return game.isPlaying && s.turn( 0,  1);
-                    case 37: return game.isPlaying && s.turn(-1,  0);
-                    case 39: return game.isPlaying && s.turn( 1,  0);
-                    case 27: case 32:
-                        if (game.isPlaying) {
-                            game.pause();
-                            game.setPauseText("Hra pozastavena");
-                        } else {
-                            game.play();
-                        }
-                } e.preventDefault();
-            });
-        })();
-    </script>
+<script>window.GitSnake = {};</script>
+<script src="js/Point2D.js"></script>
+<script src="js/SquareObject.js"></script>
+<script src="js/Snake.js"></script>
+<script src="js/Game.js"></script>
+<script src="js/Food.js"></script>
+<script src="js/Text.js"></script>
+<script>
+    (function () {
+        var game = new GitSnake.Game(document.getElementById("canvas"), 20, 30);
+        game.setPauseText("Pro zahájení hry stiskněte mezerník nebo Esc");
+        var s = game.snake;
+
+        window.addEventListener("keydown", function (e) {
+            switch (e.keyCode) {
+                case 38:
+                    return game.isPlaying && s.turn(0, -1);
+                case 40:
+                    return game.isPlaying && s.turn(0, 1);
+                case 37:
+                    return game.isPlaying && s.turn(-1, 0);
+                case 39:
+                    return game.isPlaying && s.turn(1, 0);
+                case 27:
+                case 32:
+                    if (game.isPlaying) {
+                        game.pause();
+                        game.setPauseText("Hra pozastavena");
+                    } else {
+                        game.play();
+                    }
+            }
+            e.preventDefault();
+        });
+    })();
+</script>
 </body>
 </html>
